@@ -10,16 +10,29 @@ interface Props{
 async function GetPokemon(){
     const url: string = "https://pokeapi.co/api/v2/";
 
-    const {data} = await axios.get(
+    await axios.get(
         url,
         {
             headers: {
                 Accept: "application/jason",
             }
         }
-    );
+    ).then(
+        function (response){
+            var pokeName: Object = response.data.pokemon
 
-    return console.log(data.ability);
+            var logDoConsole = Object.keys(pokeName).map((key) =>{
+                var pokeNameMap: Object;
+
+                pokeNameMap = pokeName[key as keyof typeof pokeName];
+                return pokeNameMap;
+            });
+
+            console.log(logDoConsole);
+        }
+    ).catch();
+
+    // return console.log(data.ability);
 
     // return data;
 }
