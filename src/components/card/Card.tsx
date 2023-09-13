@@ -7,28 +7,93 @@ interface Props{
     image?: string;
 }
 
+interface Pokemon{
+    name: string;
+    url: string;
+}
+
 async function GetPokemon(){
     const url: string = "https://pokeapi.co/api/v2/";
+
+    var pokeImgReturn: string;
+    var pokeNameReturn: string;
 
     await axios.get(
         url,
         {
             headers: {
-                Accept: "application/jason",
+                Accept: "application/jason/",
             }
         }
     ).then(
-        function (response){
-            var pokeName: Object = response.data.pokemon
+        async function (response){
 
-            var logDoConsole = Object.keys(pokeName).map((key) =>{
-                var pokeNameMap: Object;
+            var pokemonUrl: string = response.data.pokemon;
 
-                pokeNameMap = pokeName[key as keyof typeof pokeName];
-                return pokeNameMap;
-            });
+            await axios.get(
+                pokemonUrl,
+                {
+                    headers: {
+                        Accept: "application/jason"
+                    }
+                }
+            ).then(
+                async function (response){
+                    var pokeNameArray = [];
+                    var pokeName = [];
+                    var pokeUrl: string;
+                    var name: string;
 
-            console.log(logDoConsole);
+                    pokeNameArray = response.data.results;
+
+                    pokeName = pokeNameArray.map((pokemon: Pokemon) =>{
+
+                        return pokemon.name;
+                    })
+
+                    pokeUrl = pokeNameArray.map((pokemon: Pokemon) =>{
+
+                        return pokemon.url;
+                    });
+
+                    await axios.get(
+                        pokeUrl[0],
+                        {
+                            headers:{
+                                Accept: "application/jason/"
+                            }
+                        }
+                    ).then(
+                        function (response){
+                            var pokeImgUrl: string;
+
+                            pokeImgUrl = response.data.sprites.front_default;
+
+                            return pokeImgUrl;
+                        }
+                    ).catch()
+
+                    console.log(pokeNameReturn, pokeImgReturn)
+
+                    // return {
+                    //     pokeName,
+                    //     pokeUrl
+                    // };
+                }
+            ).catch();
+
+            
+            // var pokeName: Object = response.data.pokemon;
+
+            // var logDoConsole = Object.keys(pokeName).map((key) =>{
+            //     var pokeNameMap: Object;
+
+            //     pokeNameMap = pokeName[key as keyof typeof pokeName];
+
+            //     return response;
+            // });
+
+            // console.log(logDoConsole);
         }
     ).catch();
 
@@ -38,6 +103,7 @@ async function GetPokemon(){
 }
 
 GetPokemon();
+// console.log(GetPokemon());
 
 function Card(props:Props){
     return(

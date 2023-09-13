@@ -4,7 +4,8 @@ import './index.css';
 // import App from './components/app/App';
 // import Navbar from './components/navbar/Navbar';
 // import Footer from './components/footer/Footer'
-import Card from './components/card/Card'
+import Imagem from './components/imagem/Imagem'
+// import Card from './components/card/Card'
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -23,8 +24,12 @@ root.render(
     titulo2='DragonBall'
     /> */}
 
-    <Card
+    {/* <Card
       
+    /> */}
+
+    <Imagem
+    
     />
   </React.StrictMode>
 );
