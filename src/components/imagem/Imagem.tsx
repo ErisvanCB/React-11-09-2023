@@ -4,7 +4,7 @@ import axios from 'axios';
 
 var pokeImgReturn: string;
 async function GetImagem() {
-    const url: string = "https://pokeapi.co/api/v2/pokemon/78/";
+    const url: string = "https://pokeapi.co/api/v2/pokemon/9/";
 
 
     await axios.get(
@@ -31,7 +31,7 @@ function Imagem(){
     return(
         <div>
             <h1>
-                Rapidash
+                Blastoise
             </h1>
             <img src={pokeImgReturn} alt="" />
         </div>
