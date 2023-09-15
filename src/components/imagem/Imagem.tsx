@@ -3,6 +3,7 @@ import './Imagem.css';
 import axios from 'axios';
 
 var pokeImgReturn: string;
+
 async function GetImagem() {
     const url: string = "https://pokeapi.co/api/v2/pokemon/9/";
 

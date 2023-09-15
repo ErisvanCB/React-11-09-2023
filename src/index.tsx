@@ -4,7 +4,8 @@ import './index.css';
 // import App from './components/app/App';
 // import Navbar from './components/navbar/Navbar';
 // import Footer from './components/footer/Footer'
-import Imagem from './components/imagem/Imagem'
+// import Imagem from './components/imagem/Imagem'
+import UseStateTeste from './components/usestatetest/UseStateTeste';
 // import Card from './components/card/Card'
 import reportWebVitals from './reportWebVitals';
 
@@ -28,7 +29,11 @@ root.render(
       
     /> */}
 
-    <Imagem
+    {/* <Imagem
+    
+    /> */}
+
+    <UseStateTeste
     
     />
   </React.StrictMode>
